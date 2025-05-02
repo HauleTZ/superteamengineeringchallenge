@@ -1,0 +1,19 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Django migrations
+*/migrations/*
+
+# Environment variables file
+.env
+
+# Database
+*.db
+
+# Logs
+*.log
+
+# Virtualenv folder
+venv/
