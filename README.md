@@ -1,196 +1,89 @@
-## 🧪 Superteam Technical Challenge
+# Superteam Engineering Challenge – Payment Plan API 💸
 
-**Title:** “Ship or Die: Build the Future in a Day”  
-**Timebox:** 6–8 hours  
-**Mode:** Remote, submit within 48 hours of receiving the brief  
-**Evaluation Focus:** Functionality, clarity, architectural decisions, UX choices, and how you think  
+## 🚀 Overview
 
+This project is a RESTful API for managing **payment plans** where users can save weekly toward purchasing products. When a user’s total contributions reach the product's price, a **simulated payout** is triggered and logged.
 
-## 🔧 Choose Your Challenge (Based on Role)
+Built with Django and Django Rest Framework, this solution includes unit tests, logging, and Swagger documentation for easy exploration.
 
+---
 
-### 1. Tunzaa Payment API (Python)
+## 🛠 Features
 
-**Build a secure installment-based payment API that:**
-- Handles user savings toward a product  
-- Triggers a payout to the merchant when savings are complete  
+- Create payment plans linked to specific products
+- Make weekly contributions (e.g. TZS 5,000/week)
+- Track progress toward the target amount
+- Automatically mark plans as completed and simulate payout
+- Swagger/OpenAPI documentation
+- Unit tests for core logic
 
-**Tech:** FastAPI or Django  
-**Key Skills:** Auth, financial logic, REST, test coverage  
+---
 
+## 📦 Tech Stack
 
-### 2. Tunzaa ERP – Mauzo (PHP/Laravel)
+- Python 3.13.2
+- Django 5.2
+- Django REST Framework
+- drf-yasg (Swagger)
+- SQLite (default)
 
-**Create a sales-tracking module for MSMEs that lets users:**
-- Record sales  
-- View recent transactions  
-- *(Bonus)* Manage inventory and export data  
+---
 
-**Tech:** Laravel  
-**Key Skills:** MVC, DB design, CRUD, UX for business tools  
+## 🔧 Setup Instructions
 
+1. **Clone the project:**
+   ```bash
+   git clone https://github.com/<your-username>/superteamengineeringchallenge.git
+   cd superteamengineeringchallenge
 
-### 3. Tunzaa Internal Dashboard (PHP)
+2. **Create virtual environment & install dependencies:**
 
-**Build a data dashboard showing:**
-- Active users  
-- Sales totals (daily, weekly, monthly)  
-- Top products  
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
 
-**Tech:** PHP (Laravel/Symfony)  
-**Key Skills:** Data querying, filters, admin UI  
+3. **Run migrations:**
 
+python manage.py migrate
 
-### 4. Tunzaa Mobile App (React Native)
+4. **Run server:**
 
-**Develop a mobile experience that enables users to:**
-- Track savings progress  
-- Add new savings  
-- *(Bonus)* View insights and celebrate completion  
+python manage.py runserver
 
-**Tech:** React Native  
-**Key Skills:** Mobile UX, local state or mock API, animations  
+5. **Access Swagger docs:**
 
-
-## Detailed Challenge Descriptions
-
-### 1. Tunzaa Payment API (Python) – Backend Challenge
-
-**Objective**  
-Design a secure API that allows users to:  
-- Create an installment-based payment plan for a product  
-- Save money weekly toward that plan  
-- Once the full amount is saved, trigger merchant payout
-
-**Requirements**  
-- Use **FastAPI** or **Django Rest Framework**  
-- Implement basic JWT auth  
-- Simulate a user saving TZS 5,000/week toward a product worth TZS 20,000  
-- When target is reached, simulate payout (just log or mock the transaction)  
-- Must include unit tests for at least 2 core flows  
-
-**Bonus**  
-- Implement a webhook for “payment completed” event  
-- Provide a Postman or Swagger doc  
-
-**Evaluation Criteria**  
-- RESTfulness, modularity, clarity of thought  
-- Code structure and test coverage  
-- How you simulate “financial safety”  
+    http://127.0.0.1:8000/swagger/
 
 
-### 2. Tunzaa ERP – Mauzo (PHP/Laravel) – Backend/Full Stack Challenge
-
-**Objective**  
-Build a lightweight MVP of the _Sales Tracking Module_ for MSMEs.
-
-**Requirements**  
-- Use **Laravel**  
-- Users should be able to:  
-  - Log in  
-  - Record a sale (product, quantity, amount)  
-  - View a dashboard of past 7-day sales  
-- Use a simple SQLite or MySQL DB  
-
-**Bonus**  
-- Add a basic inventory tracker that auto-decreases stock  
-- Add an export to CSV  
-
-**Evaluation Criteria**  
-- MVC understanding, database design, security handling  
-- UI clarity if frontend is included  
-- Reusability of code  
 
 
-### 3. Tunzaa Internal Dashboard (PHP) – Full Stack Challenge
+🔍 Example Usage
 
-**Objective**  
-Build a metrics dashboard for internal teams to monitor:  
-- Number of active users  
-- Sales value today/this week/this month  
-- Most saved-for products  
+    Create a user → Create a payment plan → Contribute weekly → Reach goal → Simulated payout is logged.
 
-**Requirements**  
-- PHP (Laravel or Symfony)  
-- Must include dummy seed data (at least 200 rows)  
-- Data must be filterable by date  
+Sample log:
 
-**Bonus**  
-- Chart rendering (e.g., Chart.js)  
-- Basic user role (admin vs. viewer)  
-- Comment system for internal notes on data spikes  
+[PAYOUT] Simulated payout for user 'testuser' on plan ID 1 - Product: Smartphone, Amount: 20000 TZS
 
-**Evaluation Criteria**  
-- Data handling and querying logic  
-- Dashboard usability  
-- Code scalability  
+🧪 Tests
+
+Run all tests:
+
+python manage.py test payments
 
 
-### 4. Tunzaa Mobile App (React Native) – Frontend Challenge
-
-**Objective**  
-Build a mobile flow that lets users:  
-- See their current installment savings  
-- Add to their savings  
-- View payment progress toward a goal  
-
-**Requirements**  
-- Use **React Native** (Expo or CLI)  
-- Create a mock API or use local state with dummy data  
-- Reflect real-world UX (loading states, errors, completion)  
-
-**Bonus**  
-- Simulate an “insight” screen (e.g., “You’re 1 week away…”)  
-- Use animations to show progress  
-
-**Evaluation Criteria**  
-- UI/UX quality, responsiveness, transitions  
-- Code modularity  
-- Simplicity + elegance
 
 
-## 🕒 Repository & Workflow Instructions
-To streamline your setup and submission, please follow these steps:
+ Design Decisions
 
-**Fork This Repository**
-– As soon as you’re ready to begin, fork this GitHub repo to your own account.
-– The repo includes a README.md for setup instructions and requirements specific to your chosen challenge.
+    Django ORM was chosen to model relational data cleanly and maintain referential integrity between users, products, and payment plans.
 
-**Start and End Time**
-– Note your start time in your first commit message.
-– Record your end time in the final commit message once you’ve completed the challenge.
+    Django REST Framework (DRF) viewsets and serializers were used to ensure clean separation of concerns, enhance code reusability, and accelerate development.
 
-**Granular Commits**
-– Make small, logical commits reflecting each incremental step (e.g., “add user authentication,” “implement savings endpoint,” “write unit tests for payout flow”).
+    Contributions are recorded as individual entries to provide a complete transaction history and enable future auditability.
 
-**Commit History**
-– Ensure your commit history clearly shows your progression from start to finish.
+    total_saved is implemented as a computed property rather than a stored field to ensure real-time accuracy and avoid data redundancy.
 
+    Payout simulation is handled using Django’s logging framework to keep the process safe and transparent during development and testing.
 
-## 💬 Submission Checklist
-
-- **GitHub repo** with a README.md that covers:  
-  - What you built  
-  - Any assumptions made  
-  - How to run it  
-- 2–3 sentences on **your design choices**  
-- *(Optional)* Short Loom/video walkthrough (max 5 mins)  
-
-
-## 🧠 Bonus Curveball (Optional)
-
-> *If you were given access to Tunzaa’s entire data engine, what product feature would you ship in 90 days that could unlock 10× user growth or financial health improvement?*  
-
-
-## ⚖️ Scoring Breakdown
-
-| Criteria                       | Points |
-| ------------------------------ | ------ |
-| Completeness                   | 20     |
-| Code Quality & Structure       | 20     |
-| UX & Realism                   | 20     |
-| Creativity & Bonus Features    | 20     |
-| Documentation & Clarity        | 20     |
-
-**Passing score:** 80+  
-
+    API documentation is auto-generated with drf-yasg (Swagger) for easy exploration and integration by third parties or front-end teams.
