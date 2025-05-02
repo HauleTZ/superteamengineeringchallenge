@@ -193,3 +193,4 @@ To streamline your setup and submission, please follow these steps:
 | Documentation & Clarity        | 20     |
 
 **Passing score:** 80+  
+
